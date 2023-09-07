@@ -1,0 +1,48 @@
+import requests as req, json
+
+class minion:
+    def __init__(self,ugly_name,crafting_set_num):
+        self.highest_gen = 0
+        self.crafting_materials = {}
+        self.total_materials = {}
+        self.category = 0
+        self.lvl_12_available = False
+        self.ugly_name = ugly_name
+        # set crafting set
+        keys = list(crafting_sets[crafting_set_num].keys())
+        for i in keys:
+            if i == 'gens':
+                continue
+            material = [self.ugly_name,'ENCHANTED_'+self.ugly_name,'ENCHANTED_'+self.ugly_name+'_BLOCK','ERR: MISSING DATA'][keys.index(i)]
+            for j in range(int(i[0]),int(i[1])+1):
+                self.crafting_materials[j] = {'material':material,'count':crafting_sets[crafting_set_num][i][j-int(i[0])]}
+
+#material requirements, keys are minion level and inclusive, each dict item is a new level of material
+# boss minions (revanent, taruntula, voidling) dont work because uses other minions in each recipe (would be set 16), inferno is even weirder
+crafting_sets = {
+    '1':{(1,4):[80,160,320,512],(5,11):[8,24,32,64,128,256,512],'gens':['cobblestone', 'obsidian', 'gravel', 'sand', 'end_stone', 'oak', 'birch', 'spruce', 'jungle', 'acacia', 'dark_oak', 'clay', 'pumpkin']},
+    '2':{(1,3):[128,256,512],(4,9):[8,24,64,128,256,512],(10,11):[8,16],'gens':['glowstone', 'redstone', 'carrot', 'potato', 'cactus', 'sugar_cane']},
+    '3':{(1,3):[80,256,512],(4,9):[16,32,64,128,256,512],(10,11):[8,16],'gens':['red_sand', 'mycelium']},
+    '4':{(1,4):[80,160,320,512],(5,7):[128,256,512],(8,11):[64,128,256,512],'gens':['ice']},
+    '5':{(2,6):[32,64,128,256,512],(7,11):[8,16,32,64,128],'gens':['snow']},
+    '6':{(1,4):[80,160,320,512],(5,10):[8,24,64,128,256,512],(11,11):[8],'gens':['coal', 'iron', 'gold', 'diamond', 'emerald', 'nether_quartz', 'mithril', 'cocoa', 'blaze', 'slime']},
+    '7':{(1,2):[256,512],(3,8):[8,24,64,128,256,512],(9,11):[8,16,32],'gens':['lapis']},
+    '8':{(1,2):[256,512],(3,9):[8,16,32,64,128,256,512],(10,11):[8,16],'gens':['hard_stone']},
+    '9':{(1,4):[64,128,256,512],(5,10):[8,24,64,128,256,512],(11,11):[8],'gens':['fishing', 'pig', 'sheep']},
+    '10':{(1,4):[80,160,320,512],(5,8):[96,192,384,512],(9,11):[8,16,32],'gens':['wheat']},
+    '11':{(1,2):[256,512],(3,5):[128,256,512],(6,9):[64,128,256,512],(10,11):[8,16],'gens':['melon']},
+    '12':{(1,4):[80,160,320,512],(5,11):[8,16,32,64,128,256,512],'gens':['mushroom', 'nether_wart', 'zombie', 'skeleton', 'spider', 'magma_cube']},
+    '13':{(1,4):[64,128,256,512],(5,10):[8,24,64,128,256,512],(11,11):[256],'gens':['cow']},
+    '14':{(1,4):[64,128,256,512],(5,11):[8,24,32,64,128,256,512],'gens':['chicken']},
+    '15':{(1,4):[64,128,256,512],(5,9):[32,64,128,256,512],(10,11):[256,512],'gens':['rabbit']},
+    '17':{(1,4):[80,160,320,512],(5,10):[8,24,64,128,256,512],(11,11):[16],'gens':['creeper', 'cave_spider']},
+    '18':{(1,2):[64,128],(3,6):[8,24,48,96],(7,11):[8,24,48,96,192],'gens':['enderman']},
+    '19':{(1,4):[64,128,256,512],(5,6):[256,512],(7,11):[32,64,128,256,512],'gens':['ghast']}
+}
+categories = ['Mining','Foraging','Fishing','Farming','Combat']
+materials = ['SLIME_BALL','ENCHANTED_SLIME_BALL','ENCHANTED_SLIME_BLOCK']
+minions = {}
+
+for i in crafting_sets:
+    for j in crafting_sets[i]['gens']:
+        minions[j] = minion(j.upper(),i)
