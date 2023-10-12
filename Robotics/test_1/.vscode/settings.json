@@ -1,0 +1,30 @@
+{
+    "editor.minimap.enabled": false,
+    "[python]": {
+        "editor.formatOnType": true
+    },
+    "workbench.editor.untitled.hint": "hidden",
+    "explorer.confirmDelete": false,
+    "explorer.confirmDragAndDrop": false,
+    "redhat.telemetry.enabled": false,
+    "editor.unicodeHighlight.nonBasicASCII": false,
+    "editor.unicodeHighlight.invisibleCharacters": false,
+    "editor.unicodeHighlight.ambiguousCharacters": false,
+    "window.commandCenter": true,
+    "workbench.editorAssociations": {
+        "*.ai": "default"
+    },
+    "editor.fontLigatures": true,
+    "files.autoSave": "onWindowChange",
+    "editor.fontFamily": "Fira Code, Andale Mono",
+    "editor.codeActionsOnSave": {
+    
+
+    },
+    "editor.fontSize": 14,
+    "git.ignoreMissingGitWarning": true,
+    "workbench.colorTheme": "One Dark Pro",
+    "errorLens.delayMode": "debounce",
+    "errorLens.delay": 1000,
+    "security.workspace.trust.untrustedFiles": "open"
+}

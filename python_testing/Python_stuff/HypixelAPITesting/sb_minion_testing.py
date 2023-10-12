@@ -1,5 +1,12 @@
 from sb_minion_lib import minions
-import requests as req, time, json, os, PySimpleGUI as sg
+
+import requests as req
+
+import time
+import json
+import os
+
+import PySimpleGUI as sg
 
 sg.theme('DarkGreen4')
 layout = [

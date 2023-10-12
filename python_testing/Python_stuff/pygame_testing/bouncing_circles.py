@@ -65,7 +65,7 @@ def apply_physics(object):
     else:
         object.pos.x -= object.vects.x * dt
     #apply gravity
-    object.relative_motion((0,20 * object.grav_power))
+    object.relative_motion((0, 20 * object.grav_power))
     '''if object.grav_direction == 'up' and object.grav_enabled:
         object.vects.y += 20 * object.grav_power
     elif object.grav_direction == 'down' and object.grav_enabled:

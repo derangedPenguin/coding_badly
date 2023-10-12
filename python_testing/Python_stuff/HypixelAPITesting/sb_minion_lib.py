@@ -1,24 +1,5 @@
-import requests as req, json
+import json
 
-class minion:
-    def __init__(self,ugly_name,crafting_set_num):
-        self.highest_gen = 0
-        self.crafting_materials = {}
-        self.total_materials = {}
-        self.category = 0
-        self.lvl_12_available = False
-        self.ugly_name = ugly_name
-        # set crafting set
-        keys = list(crafting_sets[crafting_set_num].keys())
-        for i in keys:
-            if i == 'gens':
-                continue
-            material = [self.ugly_name,'ENCHANTED_'+self.ugly_name,'ENCHANTED_'+self.ugly_name+'_BLOCK','ERR: MISSING DATA'][keys.index(i)]
-            for j in range(int(i[0]),int(i[1])+1):
-                self.crafting_materials[j] = {'material':material,'count':crafting_sets[crafting_set_num][i][j-int(i[0])]}
-
-#material requirements, keys are minion level and inclusive, each dict item is a new level of material
-# boss minions (revanent, taruntula, voidling) dont work because uses other minions in each recipe (would be set 16), inferno is even weirder
 crafting_sets = {
     '1':{(1,4):[80,160,320,512],(5,11):[8,24,32,64,128,256,512],'gens':['cobblestone', 'obsidian', 'gravel', 'sand', 'end_stone', 'oak', 'birch', 'spruce', 'jungle', 'acacia', 'dark_oak', 'clay', 'pumpkin']},
     '2':{(1,3):[128,256,512],(4,9):[8,24,64,128,256,512],(10,11):[8,16],'gens':['glowstone', 'redstone', 'carrot', 'potato', 'cactus', 'sugar_cane']},
@@ -39,10 +20,13 @@ crafting_sets = {
     '18':{(1,2):[64,128],(3,6):[8,24,48,96],(7,11):[8,24,48,96,192],'gens':['enderman']},
     '19':{(1,4):[64,128,256,512],(5,6):[256,512],(7,11):[32,64,128,256,512],'gens':['ghast']}
 }
-categories = ['Mining','Foraging','Fishing','Farming','Combat']
-materials = ['SLIME_BALL','ENCHANTED_SLIME_BALL','ENCHANTED_SLIME_BLOCK']
-minions = {}
 
-for i in crafting_sets:
-    for j in crafting_sets[i]['gens']:
-        minions[j] = minion(j.upper(),i)
+with 'data/min_tier_costs.json' as file:
+    restructured_dict = {}
+    for set in crafting_sets:
+        counts = {}
+        for i in crafting_sets[str(set)].keys():
+            counts[]
+
+        for gen in crafting_sets[str(set)]['gens']:
+            restructured_dict[j] = 

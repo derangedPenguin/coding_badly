@@ -43,6 +43,8 @@ def resetObj():
     randIndex = random.randint(0,len(Objs)-1)
     crntObj.objType = Objs[randIndex]
     crntObj.vectors = objVectors0[randIndex]
+
+    
     #crntObj.colVectors = colVectors[randIndex]
     rotation = 0
     blocksDropped += 1
