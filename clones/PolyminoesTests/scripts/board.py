@@ -10,26 +10,15 @@ class Board:
 
         self.tiles = {
             j:{i:0 for i in range(self.width)} for j in range(self.height)
-        }
+        }# + [{i:1 for i in range(self.width)}]
     
     def __getitem__(self, item) -> Any:
         return self.tiles[item]
 
-    def clear(self): #creates a new empty board
+    def clear(self):
         self.tiles = {
             j:{i:0 for i in range(self.width)} for j in range(self.height)
-        }
-    
-    def check_filled(self):
-        #check and move full rows
-        for row in self.tiles:
-            if all(self.tiles[row].values()): # if all values are 1
-                for row_ in range(row, 0, -1):
-                    self.tiles[row_] = self.tiles[row_-1].copy()
-        #check for any items in top row
-        if any(self.tiles[0].values()):
-            #lose
-            self.clear()
+        }# + [{i:1 for i in range(self.width)}]
     
     def render(self, surf):
         for y_cor in range(len(self.tiles)):

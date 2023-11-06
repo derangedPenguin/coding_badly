@@ -58,6 +58,5 @@ class MyRobot(wpilib.TimedRobot):
 
         self.motor.set(y)
 
-
 if __name__ == "__main__":
     wpilib.run(MyRobot)

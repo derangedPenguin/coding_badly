@@ -1,7 +1,23 @@
 {
+  "HALProvider": {
+    "Other Devices": {
+      "AnalogGyro[1]": {
+        "header": {
+          "open": true
+        }
+      }
+    }
+  },
   "NTProvider": {
     "types": {
       "/FMSInfo": "FMSInfo",
+      "/LiveWindow/Ungrouped/AnalogGyro[1]": "Gyro",
+      "/LiveWindow/Ungrouped/DifferentialDrive[1]": "DifferentialDrive",
+      "/LiveWindow/Ungrouped/DigitalInput[1]": "Digital Input",
+      "/LiveWindow/Ungrouped/DigitalInput[2]": "Digital Input",
+      "/LiveWindow/Ungrouped/Jaguar[1]": "Motor Controller",
+      "/LiveWindow/Ungrouped/Jaguar[2]": "Motor Controller",
+      "/LiveWindow/Ungrouped/Jaguar[4]": "Motor Controller",
       "/SmartDashboard/Field": "Field2d"
     }
   },

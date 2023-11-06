@@ -1,6 +1,6 @@
 import pygame
 import random as rand
-from pygame.sprite import _Group
+#from pygame.sprite import _Group
 
 pygame.init()
 running = True
@@ -18,8 +18,8 @@ tetrominoes = {'I':((0,0),(1,0),(2,0),(3,0)),
 ttm_colors = {'I':'light_blue','O':'yellow','T':'purple','L':'orange','J':'blue','S':'green','Z':'red'}
 
 class falling_ttm(pygame.sprite.Sprite):
-    def __init__(self, *groups: _Group, shape: str, color = (0,0,0)) -> None:
-        super().__init__(*groups)
+    def __init__(self, shape: str, color = (0,0,0)) -> None:
+        super().__init__()
         self.rel_points = tetrominoes[shape]
         self.color = color
 

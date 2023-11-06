@@ -257,7 +257,7 @@ while running:
             hold_time = 0
             gens += 1
             #time.sleep(dt)
-            update_var_states(5)
+            world_gen_v101()
 
     #get pressed state of keys
     keys = pygame.key.get_pressed()

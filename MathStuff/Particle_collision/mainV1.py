@@ -1,8 +1,14 @@
+'''
+resources include:
+- https://flatredball.com/documentation/tutorials/math/circle-collision/
+- https://github.com/xnx/collision/blob/master/collision.py
+- https://ericleong.me/research/circle-circle/#dynamic-circle-circle-collision
+'''
 import sys
 
 import pygame
 
-from particle import Particle
+from particleV1 import Particle
 
 class Sim:
     def __init__(self) -> None:
@@ -11,18 +17,20 @@ class Sim:
         self.display = pygame.Surface((640, 360))
 
         self.clock = pygame.time.Clock()
+        self.dt = 0.0
 
-        self.vert_grav = 0.2
+        self.vert_grav = 20
         self.hori_grav = 0
 
         self.particles = []
+
     
     def run(self):
         while True:
             self.display.fill((0,0,0))
 
             for particle in self.particles:
-                particle.update()
+                particle.update(self.dt)
                 particle.render(self.display)
 
             mouse_pos = pygame.mouse.get_pos()
@@ -36,20 +44,20 @@ class Sim:
                     if event.key == pygame.K_SPACE:
                         self.particles.append(Particle(self, (mouse_pos[0], mouse_pos[1]), 5, 0.8))
                     if event.key == pygame.K_UP:
-                        self.vert_grav -= 0.05
+                        self.vert_grav -= 5
                     if event.key == pygame.K_DOWN:
-                        self.vert_grav += 0.05
+                        self.vert_grav += 5
                     if event.key == pygame.K_RIGHT:
-                        self.hori_grav += 0.05
+                        self.hori_grav += 5
                     if event.key == pygame.K_LEFT:
-                        self.hori_grav -= 0.05
+                        self.hori_grav -= 5
                     if event.key == pygame.K_r:
-                        self.vert_grav = 0.2
+                        self.vert_grav = 20
                         self.hori_grav = 0
                         self.particles.clear()
             
             self.screen.blit(pygame.transform.scale(self.display, (self.screen.get_width(), self.screen.get_height())), (0,0))
             pygame.display.update()
-            self.clock.tick(60)
+            self.dt = self.clock.tick(60) / 1000 #in milliseconds
 
 Sim().run()
