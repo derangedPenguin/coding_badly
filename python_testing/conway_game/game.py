@@ -16,7 +16,10 @@ class Game:
 
         self.tilemap = Tilemap(self, tile_size=8)
 
-        self.tile_colors = {'dead':(255,255,255),'live':(0,0,0)}
+        self.tile_colors = {
+            'dead':(255,255,255),
+            'live':(0,0,0)
+        }
 
     def run(self):
         while True:

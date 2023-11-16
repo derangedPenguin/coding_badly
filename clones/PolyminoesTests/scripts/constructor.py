@@ -1,41 +1,61 @@
-class Polymino:
-    def __init__(self, source_dict: dict | None = None) -> None:
-        if source_dict is None:
-            self.n = 0
-            self.offsets = ()
-        else:
-            self.n = source_dict['n']
-            self.offsets = source_dict['offsets']
+INT_DIR_TO_OFFSET = {
+    0:(0,-1),#up
+    1:(1,0),#right
+    2:(0,1),#down
+    3:(-1,0)#left
+}
+
+class custom_gen:
+    def __init__(self, min=0, max=4) -> None:
+        self.min = min #incclusive
+        self.max = max #non-inclusive
+
+        self.next = min+1
+        self.current = min
+        self.last = max
     
-    def __getitem__(self, item):
-        return self.offsets[item]
+    def grab(self):
+        print(self.current)
+        result = self.current
+        self.increment()
+        return result
+    
+    def increment(self):
+        self.next = (self.next+1) % self.max
+        self.current = (self.next+1) % self.max
+        self.last = (self.next+1) % self.max
 
-    def to_dict(self):
-        return {'n':self.n,'offsets':self.offsets}
+def gen_minos(n):
+    tiles = []
+    gens = []
+    crnt_tile = []
+    crnt_offset = [0,0]
+    count = n
 
-class Polymino_Set:
-    def __init__(self, shapes = []) -> None:
-        self.shapes = shapes
-        self.polys = []
+    for i in range(100000):
+        if len(crnt_tile) == n:
+            #store current tile
+            tiles.append(crnt_tile)
+            #check if all gens at 4 (finished state)
+            finished = True
+            for gen in gens:
+                if gen.current != 4:
+                    finished = False
+                    break
+            #return mino list if finished
+            if finished: return tiles
 
-    def create_polyminoes(self):
-        for shape in self.shapes:
-            self.polys.append(Polymino(shape))
+            #remove most recent pieces to cycle through next position
+            for i in range(len(gens)-1,-1,-1):
+                if gens[i].current == 4:
+                    del gens[i]
+                    del crnt_tile[i]
 
-    def n_minoes(self, n) -> None:
-        #init shapes dict with stick
-        shapes = {'stick':[(0,i) for i in range(n)]}
-        
-        for i in range(n):
-            shapes[f'turned-{i}'] = self.turn(n,i)
-        
-        self.shapes = shapes.copy()
-
-
-    def turn(self, n, turn_point):
-        vals = []
-        for i in range(turn_point):
-            vals.append((0,i))
-        for i in range(n - turn_point):
-            vals.append((turn_point, i))
-        return vals
+            move = INT_DIR_TO_OFFSET[gens[-1].grab()]
+            crnt_offset = (crnt_offset[0]+move[0], crnt_offset[1]+move[1])
+        else:
+            crnt_tile.append(crnt_offset)
+            gens.append(custom_gen(0,4))
+            move = INT_DIR_TO_OFFSET[gens[-1].grab()]
+            crnt_offset = (crnt_offset[0]+move[0], crnt_offset[1]+move[1])
+    return tiles

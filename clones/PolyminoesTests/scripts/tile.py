@@ -14,7 +14,7 @@ class FallingTile:
         self.timer = 0
         """time in frames that tile has existed"""
 
-        self.own_offsets = TETROMINOES[shape_id]
+        self.own_offsets = self.game.minos[shape_id]
 
         #stuff for overall rect collision with more complex shapes
         self.left = self.own_offsets[0][0]
@@ -58,4 +58,4 @@ class FallingTile:
     def render(self, surf):
         for offset in self.own_offsets:
             pos = (self.pos[0] + offset[0], self.pos[1] + offset[1])
-            surf.blit(self.game.assets[self.shape_id], (pos[0] * self.board.tile_size, pos[1] * self.board.tile_size))
+            surf.blit(self.game.assets[0], (pos[0] * self.board.tile_size, pos[1] * self.board.tile_size))

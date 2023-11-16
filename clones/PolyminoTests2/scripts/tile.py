@@ -3,19 +3,6 @@ import pygame
 
 FRAMERATE = 20
 
-class VisualTile:
-    def __init__(self, game, pos, shape_id) -> None:
-        #pos_offset = list(game.tetrominoes[shape_id][0])
-        #self.pos = [pos[0]+pos_offset[0], pos[1]+pos_offset[1]]
-        self.shape_id = shape_id
-        self.game = game
-
-        self.own_offsets = self.game.tetrominoes[self.shape_id][1:]
-    
-    def render(self, surf, pos):
-        for offset in self.own_offsets:
-            surf.blit(self.game.assets[self.shape_id], (pos[0]+(offset[0]*self.game.board.tile_size), pos[1]+(offset[1]*self.game.board.tile_size)))
-
 class FallingTile:
     def __init__(self, board, game, pos, shape_id, speed=1) -> None:
         pos_offset = list(game.tetrominoes[shape_id][0])
@@ -89,23 +76,6 @@ class FallingTile:
         for timer in self.timers:
             if self.timers_active[timer]:
                 self.timers[timer] += 1
-
-        down_collide = False
-
-        down_collide = self.shape_collide((self.pos[0], self.pos[1]+1), self.own_offsets)
-
-        if not down_collide and self.freezing:
-            self.freezing = 0
-        if self.freezing:
-            self.freezing += 1
-            if (not self.timers_active['left'] and not self.timers_active['right'] and self.freezing >= 10) or self.freezing >= 25:
-                self.freeze()
-                return True
-        
-        if not down_collide:
-            self.pos[1] += (self.timers['main'] % (FRAMERATE // (self.speed + self.speed_mod)) == 0) #adds 1 when time passed is multiple of framerate / tile speed mult
-        else:
-            self.freezing += 1
 
     def render(self, surf):
         for offset in self.own_offsets:

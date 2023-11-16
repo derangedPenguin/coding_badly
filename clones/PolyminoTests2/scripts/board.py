@@ -1,9 +1,9 @@
+from typing import Any
 import pygame
 import json
 
 
 class Board:
-    """holds data and methods to handle Tetris-like stuff"""
     def __init__(self, game, dims, tile_size) -> None:
         self.width = dims[0]
         self.height = dims[1]
@@ -14,18 +14,15 @@ class Board:
             j:{i:0 for i in range(self.width)} for j in range(-1,self.height)
         }
     
-    def __getitem__(self, item):
+    def __getitem__(self, item) -> Any:
         return self.tiles[item]
 
-    def clear(self):
-        """creates a new empty board"""
+    def clear(self): #creates a new empty board
         self.tiles = {
             j:{i:0 for i in range(self.width)} for j in range(-1,self.height)
         }
     
     def check_filled(self):
-        """checks for and removes full rows; returns bool to signify loss condition met"""
-        full = False
         #check and move full rows
         for row in self.tiles:
             if all(self.tiles[row].values()): # if all values are 1
@@ -35,11 +32,9 @@ class Board:
         #check for any items in top row
         if any(self.tiles[0].values()):
             #lose
-            full = True #self.clear()
-        return full
+            return True #self.clear()
     
     def render(self, surf):
-        """renders each tile to pygame surface"""
         #print(json.dumps(self.tiles, indent=4))
         for y_cor in self.tiles:
             for x_cor in self.tiles[y_cor]:

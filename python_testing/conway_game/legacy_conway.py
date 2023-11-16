@@ -23,9 +23,9 @@ class tile:
         
         
 #construct dict for coordinate plane, based on input dimensions
-WIDTH = 80 #int(input('Width: '))
-HEIGHT = 80 #int(input('Height: '))
-cell_size = 6
+WIDTH = 160 #int(input('Width: '))
+HEIGHT = 160 #int(input('Height: '))
+cell_size = 3
 game_board = board(width=WIDTH,height=HEIGHT)
 
 for x in range(game_board.width): # can potentially be simplified

@@ -1,17 +1,22 @@
 ALPHABET = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z']
 
-rotation_num = int(input('\nEnter number of rotations\n > '))
-action = input('\nEncrypt "E", or Decrypt "D"?\n > ')
+rotation_num = 6
 message = input('\nMessage\n > ')
 
-if message[0].isnumeric():
-    message = str(ALPHABET[char] for char in message.split(' '))
+#message = str([ALPHABET[int(char)] for char in message.split(' ')])
+new_msg = []
+for char in message.split(' '):
+    try:
+        new_msg.append(ALPHABET[int(char)])
+    except:
+        pass
 
+message = str(new_msg)
 
 code_dict = {}
 
 for i in range(26):
-    code_dict[ALPHABET[i]] = ALPHABET[((i+rotation_num) if action == 'E' else (i-rotation_num)) % 26]
+    code_dict[ALPHABET[i]] = ALPHABET[(i-rotation_num) % 26]
 
 def convert_code(char: str):
     if char.lower() in ALPHABET:
