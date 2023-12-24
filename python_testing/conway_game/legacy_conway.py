@@ -25,7 +25,7 @@ class tile:
 #construct dict for coordinate plane, based on input dimensions
 WIDTH = 160 #int(input('Width: '))
 HEIGHT = 160 #int(input('Height: '))
-cell_size = 3
+cell_size = 2
 game_board = board(width=WIDTH,height=HEIGHT)
 
 for x in range(game_board.width): # can potentially be simplified
@@ -169,7 +169,7 @@ def world_gen_v101():
 #+---------------------------------running---------------------------------+
 #pygame setup
 pygame.init()
-screen = pygame.display.set_mode((game_board.width*(cell_size+1),game_board.height*(cell_size+1)))
+screen = pygame.display.set_mode((game_board.width*(cell_size+0),game_board.height*(cell_size+0)))
 running = True
 mouse_clicked = False
 analysis_running = False
@@ -221,7 +221,7 @@ while running:
             pos = pygame.mouse.get_pos()
             hold_time = 0
             try:
-                if game_board.data[pos[0]//(cell_size+1)][pos[1]//(cell_size+1)] == 0:
+                if game_board.data[pos[0]//(cell_size+0)][pos[1]//(cell_size+0)] == 0:
                     mode = 'enable'
                 else:
                     mode = 'disable'
@@ -242,14 +242,14 @@ while running:
 
     for x in range(game_board.width):
         for y in range(game_board.height):
-            pygame.draw.rect(screen,get_state_color(x,y),pygame.rect.Rect(x*(cell_size+1),y*(cell_size+1),cell_size,cell_size))
+            pygame.draw.rect(screen,get_state_color(x,y),pygame.rect.Rect(x*(cell_size+0),y*(cell_size+0),cell_size,cell_size))
 
     if mouse_clicked:
         pos = pygame.mouse.get_pos()
         if mode == 'enable':
-            game_board.data[pos[0]//(cell_size+1)][pos[1]//(cell_size+1)] = 1
+            game_board.data[pos[0]//(cell_size+0)][pos[1]//(cell_size+0)] = 1
         else:
-            game_board.data[pos[0]//(cell_size+1)][pos[1]//(cell_size+1)] = 0
+            game_board.data[pos[0]//(cell_size+0)][pos[1]//(cell_size+0)] = 0
 
     if analysis_running and not analysis_paused:
         hold_time += dt
@@ -257,7 +257,7 @@ while running:
             hold_time = 0
             gens += 1
             #time.sleep(dt)
-            world_gen_v101()
+            update_conway()
 
     #get pressed state of keys
     keys = pygame.key.get_pressed()

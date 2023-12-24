@@ -32,7 +32,8 @@ class Game:
         self.ttm_colors = {'I':(0,255,255),'O':(255,255,0),'T':(127,255,0),'L':(255,127,0),'J':(0,0,255),'S':(0,255,0),'Z':(255,0,0)}
 
         self.assets = {
-            'circle':load_image('circle.png', scale=(1,1), shift_col=(254,254,254), set_alpha=125),
+            'circle':load_image('circle.png', scale=(1,1), shift_col=(254,254,254), set_alpha=127),
+            'white':load_image('white.png', set_alpha=127),
             0:load_image('gray.png', scale=(4,4)), #gray
         }
         for shape in self.tetrominoes:
@@ -145,7 +146,9 @@ class Game:
             self.clock.tick(60)
     
     def run_paused(self):
-        self.screen.fill((255,255,255, 127))
+        self.screen.blit(self.assets['white'], (0,0))
+        pygame.display.update()
+
         while True:
             should_break = False
             for event in pygame.event.get():
@@ -160,6 +163,21 @@ class Game:
                         should_break = True
             if should_break: break
 
+    def run_lost(self):
+        while True:
+            self.screen.blit(self.assets['white'], (0,0))
+            pygame.display.update()
+            
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    pygame.quit()
+                    sys.exit()
+                if event.type == pygame.KEYDOWN:
+                    if event.key == pygame.K_ESCAPE:
+                        pygame.quit()
+                        sys.exit()
+            pygame.display.update()
+            self.clock.tick(60)
     
     def run_menu(self):
         while True:
