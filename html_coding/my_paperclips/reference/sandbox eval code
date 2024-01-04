@@ -1,0 +1,16 @@
+
+(() => {
+    // used to avoid multiple connections from the same tab
+    if (window.keepAlive) {
+        return;
+    }
+    function connect() {
+        browser.runtime.connect({ name: 'keepAlive' })
+            .onDisconnect
+            .addListener(() => {
+                connect();
+            });
+    }
+    connect();
+    window.keepAlive = true;
+})();

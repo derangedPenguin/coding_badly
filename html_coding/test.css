@@ -1,0 +1,54 @@
+h1 {color: coral; font-size: 50px;}
+h6 {animation: ease-in;}
+pre {color: bisque;}
+body {
+    background-color: rgb(109, 149, 121);
+    margin: 0%;
+}
+header {
+    /*background-image: url("https://media.istockphoto.com/id/913465650/vector/paperclips.jpg?s=612x612&w=0&k=20&c=9jRtA8h6Kxw8llR426XOEnp_6vsEgCNisEKbUjSvkU8=");
+    background-repeat: repeat-x;
+    background-size: 50px 50px;
+    background-attachment: fixed;*/
+    background-color: white;
+    width: 100%;
+}
+
+th, td {
+    text-align: center;
+
+    background-color: rgb(79, 15, 138, 0.75);
+
+    border:0px solid rgb(0, 0, 0);
+    /*border-collapse: collapse;*/
+    border-radius: 10px;
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+
+    list-style-type: none;
+}
+
+li a {
+    display: block;
+    text-align: center;
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
+
+.nav_button a {
+    float: left;
+    background-color: rgb(109, 149, 121);
+    color: white;
+    text-decoration: none;
+
+    border-radius: 15px 15px 0px 0px;
+}
+.nav_button a:hover {
+    background-color: rgb(59, 81, 65);
+}

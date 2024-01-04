@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>The Other Page</title>
+        <link rel="stylesheet" href="test.css">
+    </head>
+    
+    <body>
+        <header id="header">
+            <img src="https://media.istockphoto.com/id/913465650/vector/paperclips.jpg?s=612x612&w=0&k=20&c=9jRtA8h6Kxw8llR426XOEnp_6vsEgCNisEKbUjSvkU8=" alt="Image of Paperclips" width="" height="50px">
+            <ul>
+                <li class="nav_button" id="nav1" onclick="document.getElementById('nav5').hidden=true"><a href="#header">Menu Option 1</a></li>
+                <li class="nav_button" id="nav2" onclick="document.getElementById('nav1').hidden=true"><a href="#header">Menu Option 2</a></li>
+                <li class="nav_button" id="nav3" onclick="document.getElementById('nav4').hidden=true"><a href="#header">Menu Option 3</a></li>
+                <li class="nav_button" id="nav4" onclick="document.getElementById('nav2').hidden=true"><a href="#header">Menu Option 4</a></li>
+                <li class="nav_button" id="nav5" onclick="document.getElementById('nav3').hidden=true"><a href="#header">Menu Option 5</a></li>
+            </ul>
+        </header>
+
+        <p>
+            Welcome to the other page
+            <br>
+            <a href="test.html">back home</a>
+            <br>
+            <a href="mailto:bmccann12008@gmail.com">say hi</a>
+        </p>
+
+        <p>
+            
+            <table style="width: 50%;">
+                <caption style="color: blueviolet;">Here is a table of things</caption>
+                <tr>
+                    <th colspan="2" rowspan="2">Thing</th>
+                    <th>Thing</th width=70%>
+                </tr>
+                <tr>
+                    <td>thing</td>
+                </tr>
+                <!--<tr style="height: 40px;">
+                    <td>
+                        <ul style="list-style-type: square;">
+                            <li>thing</li>
+                            <li>thing</li>
+                            <li>thing</li>
+                        </ul>
+                    </td>
+                    <td>
+                        <ol style="list-style-type: lower-greek;">
+                            <li>thing 1</li>
+                            <li>thing 2</li>
+                            <li>thing 3</li>
+                        </ol>
+                    </td>
+                    <td>thing</td>
+                </tr> -->
+            </table>
+        </p>
+        
+        <button>tis a button</button>
+
+        <hr>
+
+        <h1 id="S2">Section 2</h1>
+
+        <iframe src="test.html" title="home" height="500px" width="50%"></iframe>
+        
+    </body>
+</html>

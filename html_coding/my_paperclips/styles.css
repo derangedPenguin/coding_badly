@@ -1,0 +1,46 @@
+/* remove margins and padding across all necessary types*/
+html, body, header {
+    margin: 0%;
+    padding: 0%;
+}
+
+body {
+    /*background-image: url("paperclips_background.png");
+    background-position: 0px 95px;*/
+
+    background-color: rgb(188, 188, 188);
+}
+
+/*used for player console*/
+header {
+    background-color: black;
+    height: 100px;
+}
+
+#player_console {
+    margin: 0%;
+    height: 100%;
+    color: white;
+    font-size: 15px;
+}
+
+#clips_display {
+    margin: 0%;
+    font-size: 35px;
+}
+
+/*generic class for standard displaying of values*/
+.standard_display {
+    margin: 0%;
+    font-size: 15px;
+}
+
+.cat_header {
+    font-size: 25px;
+}
+
+.cat_line {
+    margin-top: 0%;
+    padding-top: 0%;
+    background-color: white;
+}
