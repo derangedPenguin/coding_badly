@@ -10,10 +10,12 @@ THEMES = {
         "board_background":(30,30,30),
         "gui_background":(60,60,60),
         "borders":(30,30,30),
-        "numbers":(40,60,200),
+        "numbers":(60,80,240),
+        "selected_num":(40,60,200),
         "invalid_num":(200,0,0),
         "num_background":(60,60,60),
-        "selected_num_background":(90,90,90)
+        "selected_num_background":(90,90,90),
+        "selected_num_type_background":(75,75,75),
     },
     "sunset":{} 
 }
@@ -81,8 +83,8 @@ class Game:
                     
                     if event.key == pygame.K_z:
                         self.board.gen_board()
-                    if event.key == pygame.K_x:
-                        self.board.prep_board()
+                    #if event.key == pygame.K_x:
+                    #    self.board.prep_board()
             
             self.PGScreen.blit(self.board_screen, (0,0))
             self.PGScreen.blit(self.GUI_screen, (self.PGScreen.get_height(),0))

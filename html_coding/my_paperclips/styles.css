@@ -8,7 +8,7 @@ body {
     /*background-image: url("paperclips_background.png");
     background-position: 0px 95px;*/
 
-    background-color: rgb(188, 188, 188);
+    background-color: rgb(255, 255, 255);
 }
 
 /*used for player console*/
@@ -19,28 +19,57 @@ header {
 
 #player_console {
     margin: 0%;
+    padding-left: 5px;
     height: 100%;
     color: white;
     font-size: 15px;
 }
 
 #clips_display {
-    margin: 0%;
+    margin-top: 20px;
+    margin-bottom: 20px;
     font-size: 35px;
 }
 
 /*generic class for standard displaying of values*/
 .standard_display {
     margin: 0%;
-    font-size: 15px;
+    font-size: 17px;
 }
 
 .cat_header {
-    font-size: 25px;
+    font-size: 20px;
+    margin-bottom: 0px;
 }
 
 .cat_line {
     margin-top: 0%;
     padding-top: 0%;
+    width: 100%;
     background-color: white;
+}
+
+#left_column {
+    width: 25%;
+}
+
+.inline_button {
+    float: left;
+    width: fit-content;
+    height: 17px;
+    padding: 2px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    font-size: 11px;
+    margin-right: 5px;
+}
+
+#clip_button, .inline_button {
+    background-image: linear-gradient(rgb(242, 242, 242), rgb(155, 155, 155));
+    border-radius: 3px;
+    border-width: 1px;
+}
+
+.category {
+    margin-top: 20px;
 }

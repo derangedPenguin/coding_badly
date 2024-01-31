@@ -15,13 +15,12 @@ class MagicBoard:
     
     def get_column(self, index):
         return [row[index] for row in self.board]
-    '''def get_box(self, coord):
+    def get_box(self, coord):
         box_coord = (coord[0])//3, (coord[1])//3
-        print(f'{coord} --- {box_coord}')
         box = [
             [self[x+(box_coord[0]*3)][y+(box_coord[1]*3)] for x in range(3)] for y in range(3)
         ]
-        return box'''
+        return box
     def get_box(self, coord):
         row, col = coord
         square=[]
@@ -61,62 +60,40 @@ class MagicBoard:
     def is_board_full(self):
         return not any((0 in row for row in self.board))
     
-    '''    def fill_board(self):
+    '''def fill_board(self):
+        nums = NUMS.copy()
         for x, y in TILES:
             if self[x][y] != 0:
                 continue
 
-            available_nums = NUMS.copy()
-            random.shuffle(available_nums)
-            for chosen_val in available_nums:
-
-                if (not self.is_val_in_box(chosen_val, (x,y)) 
+            random.shuffle(nums)
+            for chosen_val in nums:
+                if not ( self.is_val_in_row(chosen_val, x)
                     and not self.is_val_in_column(chosen_val, y) 
-                    and not self.is_val_in_row(chosen_val, x)):
+                    and not self.is_val_in_box(chosen_val, (x,y))):
                     self[x][y] = chosen_val'''
+
     def fill_board(self):
-        for i in range(0,81):
-            row=i//9
-            col=i%9
-            if grid[row][col]==0:
-            shuffle(numberList)      
-            for value in numberList:
-                #Check that this value has not already be used on this row
-                if not(value in grid[row]):
-                #Check that this value has not already be used on this column
-                if not value in (grid[0][col],grid[1][col],grid[2][col],grid[3][col],grid[4][col],grid[5][col],grid[6][col],grid[7][col],grid[8][col]):
-                    #Identify which of the 9 squares we are working on
-                    square=[]
-                    if row<3:
-                        if col<3:
-                            square=[grid[i][0:3] for i in range(0,3)]
-                        elif col<6:
-                            square=[grid[i][3:6] for i in range(0,3)]
-                        else:  
-                            square=[grid[i][6:9] for i in range(0,3)]
-                    elif row<6:
-                        if col<3:
-                            square=[grid[i][0:3] for i in range(3,6)]
-                        elif col<6:
-                            square=[grid[i][3:6] for i in range(3,6)]
-                        else:  
-                            square=[grid[i][6:9] for i in range(3,6)]
-                    else:
-                        if col<3:
-                            square=[grid[i][0:3] for i in range(6,9)]
-                        elif col<6:
-                            square=[grid[i][3:6] for i in range(6,9)]
-                        else:  
-                            square=[grid[i][6:9] for i in range(6,9)]
-                        #Check that this value has not already be used on this 3x3 square
-                        if not value in (square[0] + square[1] + square[2]):
+        for row, col in TILES:
+            grid = self.board
+            numberList = NUMS.copy()
+
+            if grid[row][col] == 0:
+                random.shuffle(numberList)      
+                for value in numberList:
+                    #Check that this value has not already be used on this row
+                    if (not self.is_val_in_row(value, row)
+                        and not (self.is_val_in_column(value, col))
+                        and not (self.is_val_in_box(value, (row, col)))
+                        ):
                         grid[row][col]=value
-                        if is_grid_full(grid):
+
+                        if self.is_board_full():
                             return True
                         else:
-                            if fillGrid(grid):
-                            return True
-            break
+                            if self.fill_board():
+                                return True
+                break
         grid[row][col]=0
     
     def setup_board(self):

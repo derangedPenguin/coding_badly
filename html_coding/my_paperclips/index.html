@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Planetary Paperclips</title>
+        <link rel="stylesheet" href="styles.css">
+        <script src="main.js"></script>
+    </head>
+
+    <body>
+        <header>
+            <p id="player_console"></p>
+            <script>update_console()</script>
+        </header>
+
+        <div style="margin-left: 10px;">
+            <h1>Paperclips: <span id="clips_display"></span></h1>
+            <button id="clip_button" onclick="make_clip(1)">Make Paperclip</button>
+
+            <div id="left_column">
+                <div id="business" class="category">
+                    <h1 class="cat_header">Business</h1>
+                    <hr class="cat_line">
+                    <!--Content-->
+                    <p class="standard_display">Available Funds: $<span id="available_funds"></span></p>
+                    <p class="standard_display">Unsold Inventory: <span id="unsold_inventory"></span></p>
+                    
+                    <button class="inline_button" onclick="lower_price()">Lower</button>
+                    <button class="inline_button" onclick="raise_price()">Raise</button>
+                    <p class="standard_display">Price per Clip: $<span id="price_per_clip"></span></p>
+                    
+                    <p class="standard_display">Public Demand: <span id="public_demand"></span>%</p>
+                    <br>
+
+                    <button class="inline_button">Marketing</button>
+                    <p id="marketing_level" class="standard_display">Level: 1</p>
+                    <p id="marketing_upgrade_cost" class="standard_display">Cost: $100</p>
+                </div>
+                <div id="manufacturing" class="category">
+                    <h1 class="cat_header">Manufacturing</h1>
+                    <hr class="cat_line">
+                    <!--Content-->
+                    <p class="standard_display">Clips Sold per Second: <span id="clips_sold_per_sec"></span></p>
+                    <p class="standard_display">Wire Remaining: <span id="wire_display"></span></p>
+                </div>
+            </div id="left_column">
+        </div>
+
+
+        <!--JS Inits-->
+        <script>
+            update_display_element('price_per_clip', (price_per_clip/100).toFixed(2))
+            update_demand()
+        </script>
+        
+    </body>
+</html>

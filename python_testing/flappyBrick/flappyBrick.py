@@ -3,7 +3,7 @@ import pgzrun, random
 
 #SCREEN
 WIDTH = 400
-HEIGHT = 500
+HEIGHT = 600
 
 #SETUP SCORE
 score = 0
@@ -74,6 +74,9 @@ def update():
     clouds[i].x -= clouds[i].speed
   if score < 50:
     gap = (1 - (score/100)) * 200
+
+  
+
   #COLLISIONS
   if brick.colliderect(wall_top) or brick.colliderect(wall_bottom):
     score += 1

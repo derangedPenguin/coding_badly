@@ -49,15 +49,26 @@ class Board:
         self[self.selected_tile[0]][self.selected_tile[1]] = value
         
     def render(self, surf, theme):
+        selected_num = self.board[self.selected_tile[0]][self.selected_tile[1]]
+
         for x in range(9):
             for y in range(9):
-                pygame.draw.rect(surf,
-                                 theme['num_background'] if [x,y] != self.selected_tile else theme['selected_num_background'],
-                                 ((x*self.tile_width) + self.margin + 1, (y*self.tile_width) + self.margin + 1, self.tile_width - 1 - ((x+1)%3==0)*3, self.tile_width - 1 - ((y+1)%3==0)*3)
+                value = self[x][y]
+                #BACKGROUND
+                color = ()
+                pygame.draw.rect(surface=surf,
+                                 color=theme['selected_num_background'] if ([x,y] == self.selected_tile) else theme['num_background'],
+                                 rect=((x*self.tile_width) + self.margin + 1, (y*self.tile_width) + self.margin + 1, self.tile_width - 1 - ((x+1)%3==0)*3, self.tile_width - 1 - ((y+1)%3==0)*3)
                                  )
-                draw_num(surf, 
-                         self[x][y], 
-                         ((x*self.tile_width) + self.margin + (self.tile_width/2), (y*self.tile_width) + self.margin + (self.tile_width/2)),
+                #NUMBER
+                color = theme['numbers']
+                if value == 0:
+                    color = theme['invalid_num']
+                if [x,y] == self.selected_tile:
+                    color = theme['selected_num']
+                draw_num(surf=surf, 
+                         text=value, 
+                         center_pos=((x*self.tile_width) + self.margin + (self.tile_width/2), (y*self.tile_width) + self.margin + (self.tile_width/2)),
                          font_size=self.tile_width*0.8,
-                         color=theme['numbers'] if self[x][y] != 0 else theme['invalid_num']
+                         color=color
                          )
