@@ -45,7 +45,10 @@ class Game:
 
         self.enemies = []
 
-        self.text = {'time':PGText(self.timer, (self.screen.get_width()/2, 20), 'Time: ')}
+        self.text = {
+            'time':PGText(self.timer, (self.screen.get_width()/2, 20), 'Time: '),
+            'e_count':(PGText(len(self.enemies), (self.screen.get_width()/2+40, 20), 'Entities: '))
+        }
     
     def lose(self):
         self.player.radius = self.BASE_PLAYER_SIZE
@@ -113,12 +116,14 @@ class Game:
                 self.spawn_enemies(2)
 
             for enemy in self.enemies:
-                kill = enemy.update()
+                enemy.update()
+                kill = enemy.render(self.screen)
                 if kill:
-                    self.enemies.remove(enemy)
-                enemy.render(self.screen)
+                    del enemy
+                
 
             self.text['time'].update(self.timer//60)
+            self.text['e_count'].update(len(self.enemies))
             for text in self.text.values():
                 text.render(self.screen)
 

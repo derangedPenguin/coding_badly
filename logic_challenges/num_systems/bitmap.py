@@ -1,19 +1,15 @@
 '''len of bin(2**n) is n+1'''
+import pygame
 
-class bitmap:
-    def __init__(self, dims:tuple[int, int]) -> None:
-        self.width = dims[0]
-        self.height = dims[1]
-        self.data = bin(2**(dims[0]*dims[1]))
+import typing
+
+def render_bitmap(map:typing.Sequence[typing.Sequence[bool]], map_width:int, tile_width:float, surf:pygame.Surface, color0:pygame.Color, color1:pygame.Color):
+    for map_y in range(len(map)):
+        for map_x in range(map_width):
+            if map[map_x][map_y]:
+                pygame.draw.rect(surf, color1, (map_x*tile_width, map_y*tile_width, tile_width, tile_width))
+            else:
+                pygame.draw.rect(surf, color0, (map_x*tile_width, map_y*tile_width, tile_width, tile_width))
+
+def int_to_map(num:int)->list[list[bool]]:
     
-    def get_str(self):
-        output = ''
-        for i, point in enumerate(str(self.data)[2:]):
-            output += point
-            if i % self.width == 0:
-                output += '\n'
-        return output
-
-
-print(bitmap((8,8)).get_str())
-

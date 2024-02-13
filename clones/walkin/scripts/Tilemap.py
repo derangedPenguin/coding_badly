@@ -2,8 +2,10 @@ import json
 
 import pygame
 
-from scripts.characters import *
+from scripts.Character import *
 from scripts.utils import *
+from scripts.Player import *
+from scripts.NPCs import *
 
 class Tilemap:
     def __init__(self, game) -> None:
@@ -42,7 +44,7 @@ class Tilemap:
     def load_chars_data(self):
         chars = []
         for character in self.chars_data:
-            chars.append(NPC([i*self.tile_width for i in conv_coord(character['pos'])], character['img_path'], self, character['update_data']))
+            chars.append(NPC(conv_coord(character['pos']), character['img_path'], self, character['update_data']))
         return chars
     def load_player_data(self):
         return Player(conv_coord(self.player_data['pos']), (self.game.screen.get_width()//2,self.game.screen.get_height()//2), self.player_data['img_path'], self)

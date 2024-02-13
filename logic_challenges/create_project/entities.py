@@ -39,6 +39,12 @@ class Player(Entity):
                 else:
                     self.radius += 1#enemy.radius
                     self.game.enemies.remove(enemy)
+    
+    def update(self):
+        if self.radius-1 < self.pos[0] + (self.dir[0] * self.speed) < self.game.screen.get_width() - self.radius+1:
+            self.pos[0] += self.dir[0] * self.speed
+        if self.radius-1 < self.pos[1] + (self.dir[1] * self.speed) < self.game.screen.get_height() - self.radius+1:
+            self.pos[1] += self.dir[1] * self.speed
 
 class Enemy(Entity):
     def __init__(self, game, pos: tuple[int, int], dir: tuple[float, float], radius: float, color: tuple[int, int, int], speed: int) -> None:
@@ -49,3 +55,10 @@ class Enemy(Entity):
         #extra 3 is margin
         '''if not pygame.Rect.collidepoint(self.game.game_rect, self.pos):
             return True'''
+        return False
+    
+    def render(self, surf):
+        if pygame.Rect.collidepoint(self.game.game_rect, self.pos):
+            super().render(surf)
+        else:
+            return True

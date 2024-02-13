@@ -44,4 +44,3 @@ def far_points_on_poly(polygon, min_dist, max_attempts=20):
         #if tried too many times, return best
         if i >= max_attempts:
             return attempts[max(attempts.keys())]
-
