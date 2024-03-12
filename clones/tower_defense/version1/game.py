@@ -26,6 +26,10 @@ class Game:
         self.rounds = [{'timer':0, 'active':False}]
 
         self.rnd_attackers = []
+
+        self.rnd_active = False
+
+        self.active_rounds = []
     
     def run(self):
         while True:

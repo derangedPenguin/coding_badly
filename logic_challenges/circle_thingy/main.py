@@ -8,11 +8,11 @@ import pygame
 
 import sys
 
-from time import sleep
 import random
 
 from funcs import *
 from entities import Player, Enemy, Entity
+from gui import PGText
 
 #Do Everything
 class Game:
@@ -31,8 +31,6 @@ class Game:
     BASE_ENEMY_COLOR = (255,255,255)
     ENEMY_COLOR_VARIATION = 55
 
-    AUTO_RESTART = True
-
     def __init__(self) -> None:
         pygame.init()
         self.screen = pygame.display.set_mode((960,640), flags=pygame.RESIZABLE, vsync=True)
@@ -46,12 +44,13 @@ class Game:
         self.game_rect = pygame.Rect(*self.spawn_line[0], self.screen.get_width()+(2*self.MAX_ENEMY_RADIUS), self.screen.get_height()+(2*self.MAX_ENEMY_RADIUS))
 
         self.enemies = []
+
+        self.text = {
+            'time':PGText(self.timer, (self.screen.get_width()/2, 20), 'Time: '),
+            'e_count':(PGText(len(self.enemies), (self.screen.get_width()/2+40, 20), 'Entities: '))
+        }
     
     def lose(self):
-        if self.AUTO_RESTART:
-            self.screen.fill((255,0,0))
-            pygame.display.update()
-            sleep(1)
         self.player.radius = self.BASE_PLAYER_SIZE
         self.player.speed = self.BASE_PLAYER_SPEED
         self.player.pos = [self.screen.get_width()//2, self.screen.get_height()//2]
@@ -121,6 +120,12 @@ class Game:
                 kill = enemy.render(self.screen)
                 if kill:
                     del enemy
+                
+
+            self.text['time'].update(self.timer//60)
+            self.text['e_count'].update(len(self.enemies))
+            for text in self.text.values():
+                text.render(self.screen)
 
             pygame.display.update()
             self.clock.tick(self.FPS)

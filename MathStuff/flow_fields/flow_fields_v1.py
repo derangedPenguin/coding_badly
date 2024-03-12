@@ -25,7 +25,7 @@ class Main:
     def __init__(self) -> None:
         pygame.init()
         self.screen = pygame.display.set_mode((640,640), flags=pygame.RESIZABLE)
-        self.fancy_screen = pygame.display.se
+        #self.fancy_screen = pygame.display.se
         self.clock = pygame.time.Clock()
 
         self.timer = 0
