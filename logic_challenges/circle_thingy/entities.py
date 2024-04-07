@@ -31,6 +31,7 @@ class Player(Entity):
         
     def check_collide(self, enemies: list[typing.Self]):
         '''
+        checks collision of circular entities
         '''
         for enemy in enemies:
             if distance((self.pos, enemy.pos)) < self.radius + enemy.radius:

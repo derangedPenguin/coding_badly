@@ -12,7 +12,7 @@ from time import sleep
 import random
 
 from funcs import *
-from entities import Player, Enemy, Entity
+from entities import Player, Enemy
 
 #Do Everything
 class Game:
@@ -34,12 +34,12 @@ class Game:
     AUTO_RESTART = True
 
     def __init__(self) -> None:
+        # Pygame inits
         pygame.init()
         self.screen = pygame.display.set_mode((960,640), flags=pygame.RESIZABLE, vsync=True)
         self.clock = pygame.time.Clock()
 
-        self.timer = 0
-
+        # Game inits
         self.player = Player(self, (self.screen.get_width()//2, self.screen.get_height()//2), (0,0), self.BASE_PLAYER_SIZE, (255,255,0), self.BASE_PLAYER_SPEED)
 
         self.spawn_line = ((-self.MAX_ENEMY_RADIUS,-self.MAX_ENEMY_RADIUS),(self.screen.get_width()+self.MAX_ENEMY_RADIUS, -self.MAX_ENEMY_RADIUS), (self.screen.get_width()+self.MAX_ENEMY_RADIUS, self.screen.get_height()+self.MAX_ENEMY_RADIUS), (-self.MAX_ENEMY_RADIUS, self.screen.get_height()+self.MAX_ENEMY_RADIUS))
@@ -48,6 +48,10 @@ class Game:
         self.enemies = []
     
     def lose(self):
+        '''
+        performs all necessary actions for handling
+        the intended results of the game being lost
+        '''
         if self.AUTO_RESTART:
             self.screen.fill((255,0,0))
             pygame.display.update()
@@ -57,9 +61,11 @@ class Game:
         self.player.pos = [self.screen.get_width()//2, self.screen.get_height()//2]
 
         self.enemies.clear()
-        self.timer = 0
 
     def spawn_enemies(self, num):
+        '''
+        create and store 
+        '''
         for i in range(num):
             radius = (random.random() * (self.MAX_ENEMY_RADIUS-self.MIN_ENEMY_RADIUS+self.player.radius)) + self.MIN_ENEMY_RADIUS
             pos, target = far_points_on_poly(self.spawn_line, self.screen.get_width()*1.25)
@@ -105,8 +111,6 @@ class Game:
                         self.player.dir[0] -= 1
 
             #--------------BODY---------------------
-            self.timer += 1
-
             self.screen.fill(self.BCKGRND_COLOR)
 
             self.player.update()
@@ -127,5 +131,6 @@ class Game:
 
 Game().run()
 
+# exits in case of error in run loop allowing for it to end without exiting the application
 pygame.quit()
 sys.exit()

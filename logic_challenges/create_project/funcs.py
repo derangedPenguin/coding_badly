@@ -16,11 +16,11 @@ def distance(points):
     '''
     return math.sqrt((points[0][0]-points[1][0])**2 + (points[0][1]-points[1][1])**2)
 
-def rand_point_on_line(line):
+def rand_point_on_line(line) -> tuple[float]:
     percent_along = random.random()
     return ((line[0][0] - line[1][0])*percent_along)+line[0][0], ((line[0][1] - line[1][1])*percent_along)+line[0][0]
 
-def far_points_on_poly(polygon, min_dist_squared, max_attempts=20):
+def far_points_on_poly(polygon, min_dist_squared, max_attempts=20) -> tuple[tuple[float]]:
     '''
     randomly generate two points on the edges of a polygon
     points will never be on the same edge
@@ -45,17 +45,24 @@ def far_points_on_poly(polygon, min_dist_squared, max_attempts=20):
         if i >= max_attempts:
             return attempts[max(attempts.keys())]
 
-'''
-In detail describe what is the purpose of block of code. 
-   - The code is intended to find two random points on a polygon as far apart as possible
 
-Do you think the block of code functions well enough to meet the purpose of it?  - Explain how it does it
-   - yes, to some degree, It functions by running an infinite loop in which two points are chosen on random lines of the polygon,
-     it then returns the chosen points and breaks the loop if they are farther apart then the minimum distance parameter,
-     then continues looping until that requirement is met or the maximum number of attempts is exceeded
 
-Using your analysis from above answers, what objectives do you think you covered?
-   - Describe purpose of a program
-   - Explain how a program functions
-   - identify inputs and outputs to a program (kinda)
-'''
+
+def far_points_on_poly(polygon, min_dist_squared, max_attempts=20) -> tuple[tuple[float]]:
+    i = 0
+    attempts = {}
+    while True:
+        i += 1
+        
+        lines = [[polygon[i], polygon[(i+1)%len(polygon)]] for i in range(len(polygon))]
+        line1 = lines.pop(random.randint(0,len(polygon)-1))
+        line2 = random.choice(lines)
+        points = rand_point_on_line(line1), rand_point_on_line(line2)
+        
+        if dist := fast_distance(points) > min_dist_squared:
+            return points
+        else:
+            attempts[dist] = points
+        
+        if i >= max_attempts:
+            return attempts[max(attempts.keys())]

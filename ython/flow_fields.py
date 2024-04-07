@@ -1,9 +1,11 @@
 import sys
 
-import random
 import numpy as np
 
 import pygame
+
+from ctypes import *
+from cython import *
 
 MARGIN = 1
 
@@ -49,32 +51,38 @@ class Main:
         self.grid[key] = value
 
     def test_idk(self, thing=0):
-        match thing:
-            case 0:
-                for y, row in enumerate(self.grid):
-                    for x, data in enumerate(row):
-                        pass
-                        #self[x][y] = y/len(self.grid) * np.pi*2
-            case 1:
-                for y, row in enumerate(self.grid):
-                    for x, data in enumerate(row):
-                        dist = np.sqrt((x-len(self.grid)/2)**2+(y-len(self.grid[0])/2)**2)
-                        self[x][y][0] = dist * np.pi * (self.timer/600%20)
-            case 2:
+        # match thing:
+        #     case 0:
+        #         for y, row in enumerate(self.grid):
+        #             for x, data in enumerate(row):
+        #                 pass
+        #                 #self[x][y] = y/len(self.grid) * np.pi*2
+        #     case 1:
+        #         for y, row in enumerate(self.grid):
+        #             for x, data in enumerate(row):
+        #                 dist = np.sqrt((x-len(self.grid)/2)**2+(y-len(self.grid[0])/2)**2)
+        #                 self[x][y][0] = dist * np.pi * (self.timer/600%20)
+        #     case 2:
                 for x, row in enumerate(self.grid):
                     for y, data in enumerate(row):
                         dist = np.sqrt((x-len(self.grid)/2)**2+(y-len(self.grid[0])/2)**2)
                         data[1] = ((dist-10)/2)+15
-                        self[x][y][0] = dist * np.pi * (self.timer/1000) # direction
-                        self[x][y][1] = idk(dist+self.timer*0.2) * 20000 # magnitude
-                        self[x][y][2] = palatte(dist+self.timer*0.2) # color
+                        self[x][y][0] = dist * np.pi * (self.timer/1000)
+                        self[x][y][1] = idk(dist+self.timer*0.2) * 20000
+                        self[x][y][2] = palatte(dist+self.timer*0.2)
+            # #now for other than messing with colors and stuffs:
+            # case 3:
+            #     for x, row in enumerate(self.grid):
+            #         for y, data in enumerate(row):
+            #             pass
                     
     def run(self):
         while True:
             self.screen.fill((0,0,0))
 
+            self.timer += self.timer_inc
+
             if self.cycling:
-                self.timer += self.timer_inc
                 self.test_idk(thing=2)
 
             for y_, row in enumerate(self.grid):

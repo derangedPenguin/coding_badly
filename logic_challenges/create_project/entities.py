@@ -50,14 +50,12 @@ class Enemy(Entity):
     def __init__(self, game, pos: tuple[int, int], dir: tuple[float, float], radius: float, color: tuple[int, int, int], speed: int) -> None:
         super().__init__(game, pos, dir, radius, color, speed, 'enemy')
     
-    def update(self):
-        super().update()
-        #extra 3 is margin
-        '''if not pygame.Rect.collidepoint(self.game.game_rect, self.pos):
-            return True'''
-        return False
-    
     def render(self, surf):
+        '''
+        performs parent Entity's render function
+        checks if self collides with the screen (plus margin) and returns
+        the kill bool to preserve memory in long games
+        '''
         if pygame.Rect.collidepoint(self.game.game_rect, self.pos):
             super().render(surf)
         else:
