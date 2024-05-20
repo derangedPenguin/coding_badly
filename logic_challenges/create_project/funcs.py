@@ -44,25 +44,3 @@ def far_points_on_poly(polygon, min_dist_squared, max_attempts=20) -> tuple[tupl
         #if tried too many times, return best
         if i >= max_attempts:
             return attempts[max(attempts.keys())]
-
-
-
-
-def far_points_on_poly(polygon, min_dist_squared, max_attempts=20) -> tuple[tuple[float]]:
-    i = 0
-    attempts = {}
-    while True:
-        i += 1
-        
-        lines = [[polygon[i], polygon[(i+1)%len(polygon)]] for i in range(len(polygon))]
-        line1 = lines.pop(random.randint(0,len(polygon)-1))
-        line2 = random.choice(lines)
-        points = rand_point_on_line(line1), rand_point_on_line(line2)
-        
-        if dist := fast_distance(points) > min_dist_squared:
-            return points
-        else:
-            attempts[dist] = points
-        
-        if i >= max_attempts:
-            return attempts[max(attempts.keys())]

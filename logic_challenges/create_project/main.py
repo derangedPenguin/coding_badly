@@ -1,5 +1,5 @@
 """
-All code written by Benjamin McCann
+All code written by Me
 
 pygame library used to handle graphics and inputs
 """
@@ -63,9 +63,6 @@ class Game:
         self.enemies.clear()
 
     def spawn_enemies(self, num):
-        '''
-        create and store 
-        '''
         for i in range(num):
             radius = (random.random() * (self.MAX_ENEMY_RADIUS-self.MIN_ENEMY_RADIUS+self.player.radius)) + self.MIN_ENEMY_RADIUS
             pos, target = far_points_on_poly(self.spawn_line, self.screen.get_width()*1.25)
