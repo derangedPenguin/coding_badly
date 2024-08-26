@@ -3,12 +3,16 @@ import json
 ALPHABET = 'abcdefghijklmnopqrstuvwxyz'
 
 class SubCipher:
+    '''
+    Container class for methods involving substitution ciphers
+    '''
     @staticmethod
     def ceaser_brute(msg):
-        possibles = []
+        #
+        possibilities = []
         for i in range(1,27):
-            possibles.append(SubCipher.figure(msg, 'shift', decode=True, count=i))
-        return '\n'.join(possibles)
+            possibilities.append(SubCipher.figure(msg, 'shift', decode=True, count=i))
+        return '\n'.join(possibilities)
 
     @staticmethod
     def apply_keymap(msg, keymap: dict, decode=False):
@@ -60,4 +64,9 @@ class SubCipher:
             output += f'{a}:{b}\n'
         return output
 
-print(SubCipher.ceaser_brute('wklv lv d vhfuhw phvvdjh'))
+input_string = input('decode: ')
+
+result = SubCipher.ceaser_brute(input_string)
+
+print()
+# 'wklv lv d vhfuhw phvvdjh'
