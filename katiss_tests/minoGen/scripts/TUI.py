@@ -1,0 +1,3 @@
+class TUI:
+    def __init__(self, menus_json_path:str):
+        ...

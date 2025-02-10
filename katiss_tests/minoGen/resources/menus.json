@@ -1,0 +1,14 @@
+{
+    "intro phrase":"Welcom to mino generator!\n",
+    "default prompt":"What would you like to do?",
+    
+    "main":{
+        "header":"Options\n",
+        "options":[
+            "import data from logs",
+            "generate all n minos",
+            "run particular test cases"
+        ]
+        
+    }
+}
