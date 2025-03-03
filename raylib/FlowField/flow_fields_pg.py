@@ -75,7 +75,7 @@ class Main:
 
             if self.cycling:
                 self.timer += self.timer_inc
-                self.test_idk(thing=2)
+                self.test_idk(thing=1)
 
             for y_, row in enumerate(self.grid):
                 for x_, data in enumerate(row):
@@ -101,6 +101,6 @@ class Main:
                         print(self.timer)
 
             pygame.display.update()
-            print(self.clock.tick(60))
+            print(1/self.clock.tick(60) * 1000)
 
 Main().run()
