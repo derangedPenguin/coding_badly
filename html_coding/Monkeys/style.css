@@ -1,0 +1,136 @@
+@import url(https://fonts.googleapis.com/css?family=Share+Tech+Mono);
+
+:root {
+    --dark: rgb(10, 70, 81);
+    --pale: rgb(227, 255, 255);
+    --light: rgb(74, 216, 223);
+    --shadow: rgb(41,41,41);
+}
+
+body {
+    background-color: var(--pale);
+    /* margin: 0px; */
+
+    color: rgb(10, 70, 81);
+    font-family: sans-serif;
+    font-size: 14px;
+}
+
+#header-terminal {
+    /* display: block; */
+    height: 125px;
+    background-color: var(--dark);
+    padding: 10px;
+    
+    border-radius: 10px;
+    box-shadow: 4px 4px 10px 0px rgb(41, 41, 41);
+    
+    color: rgb(227, 255, 255);
+    font-family: 'Share Tech Mono';
+
+    overflow-wrap: normal;
+    overflow-y:auto;
+    scrollbar-width: none; /* for Firefox */
+    -ms-overflow-style: none; /* for edge */
+}
+#header-terminal::-webkit-scrollbar {
+    display: none; /* for chrome, safari, and opera */
+}
+.terminal-entry {
+    opacity: 50%;
+}
+.type, .typed {
+    font-family: 'Share Tech Mono';
+    opacity: 1.0;
+    color:#0000;
+    background:
+      linear-gradient(-90deg,var(--light) 5px,#0000 0) 1ch 0,
+      linear-gradient(var(--light) 0 0) 0 0;
+    background-size:calc(var(--n)*1ch) 200%;
+    -webkit-background-clip:padding-box,text;
+    background-clip:padding-box,text;
+    background-repeat:no-repeat;
+    animation: 
+      b .7s infinite steps(1),   
+      t max(calc(var(--n) * (.1s * (5/var(--n)))), calc(var(--n) * .03s)) steps(var(--n)) forwards;
+  }
+@keyframes t{
+from {background-size:0 200%}
+}
+@keyframes b{
+50% {background-position:0 -100%,0 0}
+}
+
+.group-group {
+    /* justify-content: space-between; */
+    /* align-items:stretch; */
+    width: 100%;
+}
+/* .group-group .group:nth-child(1) {
+    background-color: black;
+    border-width: 100px;
+} */
+
+.group {
+    /* max-width: calc(1920/4); */
+    width: 25%;
+
+    margin: 10px;
+    /*margin-right: auto;
+    margin-left: 0px; */
+    padding: 10px;
+    /* float: left; */
+    /* vertical-align: middle; */
+    /* display: flexbox; */
+    float: left;
+
+    border-radius: 10px;
+    box-shadow: 1px 1px 6px 0px var(--shadow) inset;
+
+    overflow-x: hidden;
+    white-space: nowrap;
+    /* background-color: black; */
+}
+
+@media (max-width: 800px) {
+    .group {
+        width: 40%;
+    }
+}
+
+@media (max-width: 400px) {
+    .group {
+        width: 80%;
+    }
+}
+
+h2, p {
+    margin: 0px;
+}
+
+.text-block {
+    margin-top: 10px;
+    font-size: 14px;
+    /* margin-bottom: 10px; */
+}
+
+button {
+    margin-top: 3px;
+
+    background: linear-gradient(180deg,rgb(239, 255, 255) 0%, rgb(136, 158, 158) 100%);
+
+    border-radius: 5px;
+    border-width: 1px;
+    outline-style: none; /*gets rid of the weird coloring on focus+space*/
+}
+/* .purchase-button:hover {
+
+} */
+button:active {
+
+    background: linear-gradient(180deg,rgb(185, 198, 198) 0%, rgb(103, 120, 120) 100%);
+}
+button:focus {
+    outline: 1px solid var(--dark);
+    /* border: 2px solid rgb(10, 70, 81); */
+}

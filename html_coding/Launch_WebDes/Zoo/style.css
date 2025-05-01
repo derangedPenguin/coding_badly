@@ -1,0 +1,169 @@
+/*----------General----------*/
+body {
+  background-color: rgb(62, 122, 78);
+  margin: 0%;
+}
+
+p {
+  color: rgb(207, 252, 219);
+}
+
+h1 {
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    /* font-size: 35px; */
+    color: rgb(24, 43, 42);
+}
+
+hr {
+    width: 80%;
+    color: rgba(0, 0, 0, 0.5);
+    border-style: solid;
+}
+
+.logo {
+    height: 80px;
+    width: 80px;
+
+    float: left;
+
+    display: block;
+
+    /* margin-inline: auto; */
+    /* margin:auto; */
+
+    /* vertical-align:middle; */
+    
+    /* float:inline-start; */
+}
+
+#nav {
+  height: auto;
+
+  border-radius: 0px 0px 10px 10px;
+
+  background-color: rgb(47, 133, 70);
+  padding: 10px;
+  /* margin: auto; */
+
+  text-align: center;
+  /* display: inline-block; */
+}
+
+
+/* I cant make this center and its extremely upsetting */
+.line {
+    width: 100%;
+    align-content: center;
+    /* justify-content: space-evenly; */
+}
+
+.line > * {
+    /* margin-right: 20px; */
+    margin: auto;
+    display: inline;
+    /* float: left; */
+    vertical-align: bottom;
+}
+
+.line:last-child {
+    float: right;
+}
+
+.line > table {
+    display: inline-table;
+}
+
+/*----------Slideshow----------*/
+
+#slideshow-banner {
+    width: 500px;
+    position: relative;
+    margin: auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.slide_img {
+    display: none;
+}
+
+/* Next & previous buttons */
+.prev_button, .next_button {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    margin-top: -22px;
+    padding: 16px;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    transition: 0.6s ease;
+    border-radius: 0 10px 10px 0;
+    user-select: none;
+    background-color: rgba(0,0,0,0.2);
+}
+  
+/* Position the "next button" to the right */
+.next_button {
+    right: 0;
+    border-radius: 10px 0 0 10px;
+}
+  
+/* On hover, add a black background color with a little bit see-through */
+.prev_button:hover, .next_button:hover {
+    background-color: rgba(0,0,0,0.8);
+}
+
+/*----------Main Body Elements----------*/
+#body-content {
+    margin: auto;
+
+    /* justify-content: space-evenly;
+    justi */
+    /* justify-items:center; */
+}
+
+.data-table {
+    /* display: flex; */
+    /* justify-self:center; */
+    width:45%;
+
+    margin: auto;
+    padding: 4px;    
+    
+    background-color: rgb(47, 93, 59);
+
+    border-spacing: 0px;
+    border-radius: 5%;
+    border-style: ridge;
+    border-color: black;
+}
+/* td, th, .data-table {
+    
+} */
+td, th {
+    background-color: rgb(52, 114, 70);
+    margin: 3px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: black;
+    padding: 3px;
+}
+
+#partners {
+    text-align: center;
+}
+
+#partners ol {
+    list-style: none;
+}
+
+a {
+    color: rgb(126, 186, 180);
+}
+
+/* idk if this works properly */
+a:visited::after {
+    color: rgba(186, 126, 132, 0.472);
+}

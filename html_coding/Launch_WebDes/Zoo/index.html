@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>The Lunar Zoo | Homepage</title>
+
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+    
+    <!-- good metadata, description + keywords-->
+    <meta name="description" content="The home page for the Lunar Zoo, tickets only $9999.99">
+    <meta name="keywords" content="lunar, zoo, animals, moon, space">
+  </head>
+  <body>
+    <div id="nav">
+      <img src="/logo.png" class="logo">
+      <h1>The Lunar Zoo</h1>
+    </div>
+
+
+    <!--https://www.w3schools.com/howto/howto_js_slideshow.asp used for reference here-->
+    <div id="slideshow-banner">
+      <!-- Full-width images with number and caption text -->
+      <div class="slide_img fade">
+        <img src="https://www.nhm.ac.uk/content/dam/nhm-www/discover/moon-factfile/moon-landscape-header.jpg" style="width:100%" alt="image of the moon's surface">
+        <!-- <p>1</p> -->
+      </div>
+
+      <div class="slide_img fade">
+        <img src="https://www.popsci.com/wp-content/uploads/2022/12/21/moon-surface-orion.jpg?quality=85&w=2000" style="width:100%" alt="image of the moon">
+        <!-- <p>2</p> -->
+      </div>
+
+      <div class="slide_img fade">
+        <img src="https://c.files.bbci.co.uk/b324/live/23637d40-5016-11ef-ab16-5df973d1a279.jpg" style="width:100%" alt="image of the moon with earth in background and animals in foreground">
+        <!-- <p>3</p> -->
+      </div>
+
+      <!-- Next and previous buttons -->
+      <a class="prev_button" onclick="plusSlides(-1)">&#10094;</a>
+      <a class="next_button" onclick="plusSlides(1)">&#10095;</a>
+    </div>
+
+    <div id="body-content">
+
+      <div class="line">
+        <table class="data-table">
+          <caption><h2>Ticket Pricing:</h2></caption>
+          <thead>
+            <th></th>
+            <th>Price</th>
+            <!-- <th>hi3</th> -->
+          </thead>
+          <tbody>
+            <tr>
+              <td>Child</td>
+              <td>$8599.99</td>
+              <!-- <td>0</td> -->
+            </tr>
+            <tr>
+              <td>Adult</td>
+              <td>$9999.99</td>
+              <!-- <td>0</td> -->
+            </tr>
+            <tr>
+              <td>Senior</td>
+              <td>$8999.99</td>
+              <!-- <td>0</td> -->
+            </tr>
+          </tbody>
+        </table>
+
+        <img src="https://media.istockphoto.com/id/139401718/photo/purple-elephant-w-paths.jpg?s=612x612&w=0&k=20&c=6-_6uFvSFjpHatDJSxEAaet1hcLc8EXLDn3WBk3U20o=" alt="The Lunar Zoo's Famous Purple Elephant" style="height: 160px;">
+      </div>
+
+
+      <div class="line">
+        <img src="https://i.pinimg.com/736x/01/6c/f6/016cf63a0d88b330f123a720159c1f0f.jpg" alt="A green giraffe sitting in a field" style="height: 200px;">
+
+        <table class="data-table">
+          <caption><h2>The Safest Attraction This Side of The Moon!</h2></caption>
+          <thead>
+            <th></th>
+            <th>Avg. Injuries Per Year</th>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Moons Of Fun</td>
+              <td>936.42</td>
+            </tr>
+            <tr>
+              <td>Legoland Discovery Center - The Moon</td>
+              <td>1247.04</td>
+            </tr>
+            <tr>
+              <td>The Lunar Zoo</td>
+              <td>486.30</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <br>
+      <hr>
+
+      <div id="partners">
+        <h1>Also Consider Visiting Our Partner Zoos!</h1>
+        <ol>
+          <li><a href="https://kansascityzoo.org/" target="_blank">The Kansas City Zoo & Aquarium</a></li>
+          <li><a href="https://www.cmzoo.org/" target="_blank">The Cheyenne Mountain Zoo</a></li>
+        </ol>
+      </div>
+
+    </div>
+
+    <!--
+    custom banner (with logo and business name)
+    title
+    
+    page has background color
+    use css good
+    
+    a least four images of animals
+    table with false data
+    have 2 hyperlinks which open in new tab
+    -->
+  </body>
+</html>

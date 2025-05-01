@@ -1,0 +1,45 @@
+/*
+Color Theme:
+- accents:
+    - red: #E64B27
+    - teal: #28E6A4
+- medium:
+    - teal: #46A684
+    - red/brown: #915649
+- muted:
+    - green/gray: #44665A
+    - red/black: #3C3432
+*/
+
+body {
+    margin: 0px;
+}
+
+.header-nav {
+    background-color: #46A684;
+    margin: 0px;
+    padding: 0px;
+}
+
+.nav-links {
+    margin: 0px;
+    list-style: none;
+}
+.nav-links>li {
+    border-radius: 5px; /*0px 0px 5px 5px;*/
+    background-color: #46A684;
+
+    padding: 5px 10px 5px 10px;
+    margin-right: 5px;
+    float: right;
+
+    /* cursor: pointer; */
+}
+.nav-links>li>a {
+    text-decoration: none;
+    color: white;
+}
+
+#current-nav-tab {
+    background-color: #915649;
+}
