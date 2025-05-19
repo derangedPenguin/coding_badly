@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Universal Things</title>
+
+        <link rel="stylesheet" href="max_style.css">
+        <script src="max_script.js"></script>
+
+    </head>
+    <body>
+        <div id="header-terminal">
+            <span class="terminal-entry typed">> Welcome to Maximizer. (P.S. This is heavily based off of the game <a href="https://www.decisionproblem.com/paperclips/" target="_blank">Universal Paperclips</a>) (P.P.S. This is a very early beta and has only minor functionality D:)</span><br>
+        </div>
+
+        <h1>Total Things: <span id="total-things">X</span></h1> <!--should have some passive increase at start from external production-->
+
+       <a href="index.html">
+         <button >Go Back to Main Page</button>
+        
+       </a>
+        <div class="group-group">
+            <div class="group" id="business">
+                <h2>Business</h2><hr>
+
+                <p class="text-block">
+                    Posessed Money: $<span id="posessed-money">X</span><br>
+                    Posessed Things: <span id="posessed-things">X</span><br>
+                </p>
+                <p class="text-block">
+                    Thing Market Value: $<span id="thing-market-value">X</span><br>
+                    Thing Sale Price: $<span id="thing-sale-price">X</span><br>
+                    <button class="adjuster-button" onclick="thing_sale_price.add(-1)"><<</button>
+                    <button class="adjuster-button" onclick="thing_sale_price.add(-0.1)"><</button>
+                    <button class="adjuster-button" onclick="thing_sale_price.add(0.1)">></button>
+                    <button class="adjuster-button" onclick="thing_sale_price.add(1)">>></button>
+                </p>
+                <p class="text-block">
+                    Marketing Budget: <span id="marketing-budget">X</span>% of profit<br>
+                    <button class="adjuster-button" onclick="marketing_budget.add(-1)"><<</button>
+                    <button class="adjuster-button" onclick="marketing_budget.add(-0.1)"><</button>
+                    <button class="adjuster-button" onclick="marketing_budget.add(0.1)">></button>
+                    <button class="adjuster-button" onclick="marketing_budget.add(1)">>></button>
+                </p>
+            </div>
+            <div class="group">
+                <h2>Manufacturing</h2>
+                <hr>
+                <p class="text-block">
+                    Production: <span id="thing-production">X</span> Things/Sec<br>
+                </p>
+                <p class="text-block">
+                    Material Cost Per Thing: <span id="material-cost-per-thing">X</span> Units<br>
+                    Posessed Materials: <span id="posessed-materials">X</span> Units<br>
+                    <button class="purchase-button" onclick="buy_materials()">Buy <span id="material-purchase-amount">X</span> Units of Thing Materials: $<span id="material-cost">X</span></button>
+                </p>
+                <p class="text-block">
+                    Thing Producers: <span id="thing-producers">X</span><br>
+                    <button class="purchase-button" onclick="buy_thing_producer()">Buy Thing Producer: $<span id="thing-producer-cost">X</span></button>
+                </p>
+            </div>
+            <div class="group">
+                <h2>Society</h2>
+                <hr>
+                <p class="text-block">
+                    Societal Dependence on Thing: <span id="societal-dependence">X</span><br>
+                    Societal Production of Thing: <span id="societal-production">X</span><br>
+                    <!-- <button class="purchase-button" onclick="buy_thing_producer()">Purchase Thing Producer: $<span id="thing-producer-cost">X</span></button> -->
+                </p>
+            </div>
+            <div class="group">
+                <h2>Research</h2>
+                <hr>
+                Research Budget: <span id="research-budget">X</span>% of profit<br>
+                    <button class="adjuster-button" onclick="research_budget.add(-1)"><<</button>
+                    <button class="adjuster-button" onclick="research_budget.add(-0.1)"><</button>
+                    <button class="adjuster-button" onclick="research_budget.add(0.1)">></button>
+                    <button class="adjuster-button" onclick="research_budget.add(1)">>></button>
+            </div>
+            <!-- <div class="group">
+                <h2>Revelations</h2>
+                <hr>
+                <p class="text-block">
+                    Similar to projects, but internal decision type things, must choose between different paths<br>
+                    Wireheading problems, like redefinition vs optimization, choices allow for different ending options (sim universe, completion, undo, new Thing)
+                </p>
+            </div> -->
+            <div class="group">
+                <h2>Debug</h2>
+                <hr>
+                <p class="text-block">
+                    <button onclick="reset_save()">Reset Save</button><br>
+                </p>
+                <p class="text-block">
+                    Test Terminal Entry:
+                    <button onclick="add_terminal_entry('loooooooooooooooooong loooooooooooooooooong loooooooooooooooooong loooooooooooooooooong loooooooooooooooooong loooooooooooooooooong test')">Long</button>
+                    <button onclick="add_terminal_entry('terminal test')">Short</button><br>
+                </p>
+                <p class="text-block">
+                    Expected Production: <span id="expected-thing-production">X</span> Things/Sec<br>
+                </p>
+            </div>
+        </div>
+    </body>
+</html>

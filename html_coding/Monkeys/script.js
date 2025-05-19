@@ -46,6 +46,32 @@ class AveragedValue extends SpanValue {
         this.span_elem.innerText = +this.get().toFixed(5);
     }
 }
+class AccumulatedValue {
+    constructor() {
+        this.measures = []
+        this.total_accum = 0
+    }
+    add(measure) {
+        //handle old measures
+        for (var i in this.measures) {
+            // depreciate measures
+            this.measures[i] *= 0.6
+
+            // remove now insignificant measures
+            if (this.measures[i] < 1) {this.measures.splice(i,1)}
+        }
+
+        this.measures.push(measure)
+        this.total_accum += measure
+    }
+    get() {
+        var sum = 0
+        for (var i in this.measures) {
+            sum += this.measures[i]
+        }
+        return sum
+    }
+}
 
 //full scope inits
 let saved_vals = []
@@ -69,6 +95,8 @@ let thing_producer_speed = undefined
 let thing_production = undefined
 
 let marketing_budget = undefined
+let marketing_level = undefined
+let marketing_accumulated = undefined
 
 let societal_dependance;
 
@@ -91,6 +119,8 @@ function base_initialize() {
     thing_producer_cost = new SpanValue(10, "thing-producer-cost");
     
     marketing_budget = new SpanValue(0, "marketing-budget", undefined, [0,100]);
+    marketing_level = 1
+    marketing_accumulated = new AccumulatedValue()
 
     research_budget = new SpanValue(0, "research-budget", undefined, [0,100]);
     
@@ -118,17 +148,18 @@ setInterval(() => {
 
     //Update Averaged Values
     thing_production.add(amount_produced)
-
+2
     //Sale of Things
-
+    var marketing = Math.pow(1+(marketing_level/10), marketing_accumulated.get())
+    var purchase_factor = Math.floor((societal_dependance.get() * marketing) / (thing_sale_price.get() * thing_market_value.get()))
 
     //Factors: Price/Market Val, Societal Dependance <- Total Marketing, Active Marketing
     var purchase_likelyhood = Math.max((-0.2 + thing_market_value.get()/thing_sale_price.get()) / 10 * societal_dependance.get() / 0.01, 0)
-    add_terminal_entry(purchase_likelyhood)
+    // add_terminal_entry(purchase_likelyhood)
     if (Math.random() < purchase_likelyhood) {
         var x = Math.floor((purchase_likelyhood + Math.random() * 0.5) * posessed_things.get())
         sell_things(x)
-        add_terminal_entry(`Sale: ${x}`)
+        // add_terminal_entry(`Sale: ${x}`)
     }
 
     // Display
@@ -138,38 +169,33 @@ setInterval(() => {
 }, 100);//milliseconds
 
 function add_terminal_entry(text) {
-    var term_entries = document.getElementById("header-terminal") 
+    var terminal_elem = document.getElementById("header-terminal") 
+    var prev_elem = terminal_elem.children[terminal_elem.childElementCount-2]
+    var new_t = text
+    var old_t = prev_elem.innerText.slice(2)
+    var old_num = 1
     
-    var prev_entry = term_entries.children[Math.max(term_entries.childElementCount - 4, 0)]
-    
-    
-    var prev_text = prev_entry.innerText.slice(2)
-    
-    var prev_mult = 0
-    var mult_term_start = 0
-    if (prev_text[prev_text.length-1] == ']') {
-        
-        mult_term_start = prev_text.indexOf('[')
-        
-        // console.log(prev_text.slice(mult_term_start+2, prev_text.length-1))
-        prev_mult = Number(prev_text.slice(mult_term_start+2, prev_text.length-1))
-        prev_text = prev_text.slice(0,mult_term_start)
-        
-    }  
-    if (prev_text==text) {
-        console.log(prev_mult)
-        prev_entry.innerText = `${prev_entry.innerText.slice(0,mult_term_start+4)} [x${toString(prev_mult+1)}]`
-        term_entries.lastChild.scrollIntoView({"behavior":"smooth"})
-        return
+    if (old_t[old_t.length-1] == ']') {
+        var start_i = old_t.indexOf('[')-1
+        old_num = Number(old_t.slice(start_i+3, old_t.length-1))
+        console .log(old_num)
+        old_t = old_t.slice(0, start_i)
     }
-    
-    term_entries.innerHTML += `<span class="terminal-entry typed" style="--n:${2+text.length}">> ${text}</span><br>` //•
-    
-    var prev_entry = term_entries.children[term_entries.childElementCount - 4]
-    prev_entry.classList.remove("typed")
-    prev_entry.innerText = '•' +  prev_entry.innerText.substring(1, prev_entry.innerText.length)
 
-    term_entries.lastChild.scrollIntoView({"behavior":"smooth"})
+    if (new_t == old_t) {
+        new_t += ` [x${old_num+1}]`
+        prev_elem.innerText = 'dead'
+        prev_elem.remove()
+        terminal_elem.children[terminal_elem.childElementCount-1].remove()
+    } else {
+        prev_elem.classList.remove("typed")
+        prev_elem.innerText = '•' +  prev_elem.innerText.slice(1, prev_elem.innerText.length)
+    }
+    console.log(new_t)
+
+    terminal_elem.innerHTML += `<span class="terminal-entry typed" style="--n:${2+new_t.length}">> ${new_t}</span><br>` //•
+
+    terminal_elem.lastChild.scrollIntoView({"behavior":"smooth"})
 }
 
 function sell_things(amount) {
@@ -180,7 +206,15 @@ function sell_things(amount) {
     }
 
     posessed_things.add(-things_sold)
-    posessed_money.add(things_sold*thing_sale_price.get())
+    earn_money(things_sold*thing_sale_price.get())
+}
+function earn_money(amount) {
+    var m = amount * marketing_budget.get() / 100
+    marketing_accumulated.add(amount)
+
+    var r;
+
+    posessed_money.add(amount - m)
 }
 
 function produce_things(amount) {

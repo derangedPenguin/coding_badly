@@ -10,27 +10,46 @@ Color Theme:
     - green/gray: #44665A
     - red/black: #3C3432
 */
+@import url(https://fonts.googleapis.com/css?family=Share+Tech+Mono);
+
 
 body {
-    margin: 0px;
+    /* margin: 0px; */
+    font-family: "Share Tech Mono";
+    background-color: #44665A;
+    color: #46A684;
+}
+
+h2 {
+    font-weight: 10000;
+}
+
+img {
+    max-width: 300px;
+    width: 50%;
 }
 
 .header-nav {
-    background-color: #46A684;
     margin: 0px;
     padding: 0px;
+    height: 75px;
+}
+
+#main {
+    display: block;
 }
 
 .nav-links {
-    margin: 0px;
+    margin-top: 20px;
     list-style: none;
 }
 .nav-links>li {
     border-radius: 5px; /*0px 0px 5px 5px;*/
-    background-color: #46A684;
+    background-color: #28E6A4;
 
     padding: 5px 10px 5px 10px;
     margin-right: 5px;
+    margin-top: 5px;
     float: right;
 
     /* cursor: pointer; */
@@ -41,5 +60,46 @@ body {
 }
 
 #current-nav-tab {
-    background-color: #915649;
+    background-color: #E64B27;
+}
+
+.filler {
+    height: 100px;
+}
+
+.footer {
+    background-color: #46A684;
+
+    padding: 5px;
+    color: #44665A;
+    
+    height: 100px;
+    width: 100%;
+
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+}
+.banner {
+    max-width: 100%;
+    width: 100%;
+    height: 80px;
+
+    border-radius: 0px 0px 10px 10px;
+
+    position: absolute;
+    top: 0px;
+    left: 0px;
+
+    z-index: -1;
+}
+@media only screen and (max-width: 500px) {
+  .banner, .header-nav {
+    height: 120px;
+  }
+}
+@media only screen and (max-width: 280px) {
+  .banner, .header-nav {
+    height: 150px;
+  }
 }
