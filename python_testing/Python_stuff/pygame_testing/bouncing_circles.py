@@ -5,7 +5,8 @@ pygame.init()
 screen = pygame.display.set_mode((400,400)) 
 clock = pygame.time.Clock()
 running = True
-dt = 0
+
+
 entities = []
 
 # game setup
@@ -82,8 +83,8 @@ def draw_text(text,pos,font_name='Helvetica',font_size=(16),color=(255,255,255))
     rect.center = (pos[0]+rect.width/2,pos[1])
     screen.blit(text_render,rect)
         
-player = ball((screen.get_width() / 2, screen.get_height() / 2),radius=40,color=(100,100,150),entity_type='player')
-enemy = ball((screen.get_width() / 2, screen.get_height() / 3),radius=40,color=(150,50,0),entity_type='enemy')
+player = ball((screen.get_width() / 2, screen.get_height() / 2),radius=30,color=(100,100,150),entity_type='player')
+enemy = ball((screen.get_width() *3/4, screen.get_height() / 4),radius=30,color=(150,50,0),entity_type='enemy')
 entities = [player,enemy]
 
 while running:
